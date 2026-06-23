@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资料索引 · 运动信息整理 · MK体育</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fde9e0 0%, #f7d5c0 50%, #eed4bb 100%);
+      min-height: 100vh;
+      line-height: 1.7;
+      color: #2e2b28;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper {
+      max-width: 850px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fffffffa;
+      border-radius: 36px;
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 20px 35px -8px rgba(100, 60, 30, 0.18),
+                  0 4px 12px rgba(180, 120, 80, 0.08);
+      backdrop-filter: blur(2px);
+      transition: box-shadow 0.2s ease;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.6rem;
+        align-items: flex-start;
+      }
+      .card {
+        padding: 2rem 1.2rem;
+        border-radius: 28px;
+      }
+    }
+
+    /* 文章头 */
+    .article-header {
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #f1ddd0;
+      color: #5f3e2a;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #3f2c1f;
+      margin-bottom: 0.75rem;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: #5c4a3c;
+      border-left: 4px solid #dbb09a;
+      padding-left: 1.2rem;
+      margin: 1.2rem 0 1.8rem 0;
+      font-weight: 380;
+    }
+
+    /* 正文 */
+    .content p {
+      margin-bottom: 1.4rem;
+    }
+
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content strong {
+      color: #674a36;
+      font-weight: 570;
+    }
+
+    .insight-quote {
+      background: #f5e6db;
+      border-radius: 60px 20px 20px 60px;
+      padding: 1.2rem 1.8rem;
+      margin: 1.8rem 0;
+      font-size: 0.98rem;
+      color: #3b2f26;
+      border-left: 6px solid #bf8f72;
+      font-style: normal;
+      box-shadow: 0 2px 6px rgba(120, 70, 40, 0.04);
+    }
+
+    .insight-quote::before {
+      content: "📌 整理笔记 · ";
+      font-weight: 500;
+      color: #7b5c44;
+    }
+
+    /* 链接按钮感 */
+    .link-button-like {
+      display: inline-block;
+      background: #e7d0be;
+      color: #3b2b1f;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      transition: all 0.16s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    .link-button-like:hover {
+      background: #dbbba8;
+      color: #241b14;
+      border-bottom-color: #a57d64;
+      transform: scale(1.01);
+    }
+
+    .inline-link {
+      color: #7e5a3f;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px dashed #cfb09a;
+      transition: border-bottom 0.2s, color 0.2s;
+    }
+
+    .inline-link:hover {
+      color: #4f3422;
+      border-bottom: 1.5px solid #9f765b;
+    }
+
+    /* 分隔装饰 */
+    .divider {
+      width: 70px;
+      height: 3px;
+      background: #dbb49a;
+      border-radius: 10px;
+      margin: 2.2rem 0 1.8rem 0;
+      opacity: 0.5;
+    }
+
+    /* faq 摘要风格 */
+    .faq-mini {
+      margin: 2rem 0 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.4rem;
+    }
+
+    .faq-item {
+      background: #f6ece6;
+      padding: 0.2rem 1.2rem 0.2rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: #4a3a2e;
+      border: 1px solid #e6d0c0;
+    }
+
+    .faq-item span {
+      font-weight: 550;
+      margin-right: 0.4rem;
+      color: #6f4f38;
+    }
+
+    .visit-sentence {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eeded2;
+      font-size: 1rem;
+      color: #3c3129;
+      background: #faf5f0;
+      border-radius: 24px;
+      padding: 1.2rem 1.8rem;
+    }
+
+    .footer-note {
+      margin-top: 1.8rem;
+      font-size: 0.85rem;
+      color: #766457;
+      text-align: right;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+      .lead {
+        font-size: 1rem;
+      }
+      .insight-quote {
+        border-radius: 30px 12px 12px 30px;
+        padding: 1rem 1.2rem;
+      }
+      .faq-item {
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="card">
+
+    <!-- 文章头 -->
+    <div class="article-header">
+      <span class="tag">📂 资料索引</span>
+      <h1>运动信息整理：从记录到回顾</h1>
+      <div class="lead">
+        面对庞杂的体育资讯，系统化的梳理往往比即时追逐更有效。一份温和的整理框架，帮助爱好者沉淀内容、建立自己的参照系。
+      </div>
+    </div>
+
+    <!-- 正文段落 -->
+    <div class="content">
+      <p>
+        在体育内容日益碎片化的当下，许多爱好者开始尝试将赛事数据、队伍动态与个人观感汇总为可回溯的资料。这种整理并不追求时效性，而是倾向于构建一个简洁的信息坐标——让过往的赛况、阵容变化和战术讨论都能被有序安放。对于长期关注某一项目的人来说，从信息整理入手，往往比直接分析更从容。
+      </p>
+      <p>
+        我们观察到，不少社群内部会自发形成共享索引：一份包含赛程、历史交锋、关键球员变动的清单，偶尔加上几句非正式评论。这种朴素的结构反而比算法推荐更贴合人的记忆曲线。<strong>再复杂的运动体系，也经不起逐层梳理</strong>——只要保持克制与条理，即使是业余整理者也能得到清晰的轮廓。
+      </p>
+
+      <!-- 引用 / 提示区块 -->
+      <div class="insight-quote">
+        回溯一则信息时，重要的不是它多新，而是它能否在需要时被找到。索引的意义在于让过去的细节在未来重新变得可用。
+      </div>
+
+      <p>
+        以足球、篮球等主流运动为例，一份资料索引通常涵盖三个层面：基础事实（比分、时间、场地）、环境背景（伤病、天气、赛会规则）以及主观标签（比赛节奏、关键时刻）。不必把所有条目都填满，留白反而方便后续补充。许多长期爱好者发现，半年后重读自己整理的索引，常常会注意到当时忽略的细节。
+      </p>
+      <p>
+        当然，信息整理不限于赛事本身。训练方法、运动科技、青训体系乃至体育文化解读，都可以放入个人索引。关键在于设定统一的标记方式，比如用关键词、颜色或简单的等级符号。当资料积累到一定程度，索引本身便成为一本动态的参考手册。
+      </p>
+    </div>
+
+    <!-- FAQ 摘要风格 -->
+    <div class="faq-mini">
+      <div class="faq-item"><span>❓</span> 从哪开始？ → 选择一个你真正关注的联赛或队伍</div>
+      <div class="faq-item"><span>❓</span> 需要多少条目？ → 20〜30条足矣，重点是持续</div>
+      <div class="faq-item"><span>❓</span> 工具？ → 纯文本、表格、笔记皆可</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 访问句，链接自然嵌入 -->
+    <div class="visit-sentence">
+      如果你希望参考一个已经在运转的信息索引实例，可以浏览 <a href="https://portal-index-mksports.com" class="inline-link">MK体育</a> 的页面结构——它的呈现方式或许能带来一些整理灵感。
+    </div>
+
+    <div class="footer-note">
+      索引即地图 · 非官方 · v.2411
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
